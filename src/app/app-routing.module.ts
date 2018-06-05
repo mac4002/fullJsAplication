@@ -5,7 +5,7 @@ import { ProductListComponent } from './products/product-list/product-list.compo
 
 const routes: Routes = [
   {
-    path: '/products',
+    path: 'products',
     component: ProductListComponent
   }
 ];
@@ -13,7 +13,7 @@ const routes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule.forRoot(routes)
   ],
   declarations: [],
   exports: [RouterModule]
