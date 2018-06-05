@@ -1,48 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const Product1= require(__basedir + '/model/product.js');
-const Product= Product1.Product;
+const productController = require(__basedir + '/controllers/product-controller.js');
 
 router.route('/')
-    .get(
-        (req,res, next) => {
-            Product.find(
-                (err, products) => {
-                    if(err) { 
-                        console.log('Error');
-                        next(err);}
-                    else {
-                        console.log('Success');
-                        res.json(products);
-                    }
-                }
-            );
+    .get(productController.list)
 
-    })
-    .post(
-        (req,res) => {
-            Product.create(
-                {
-                    name:'Hamac' ,
-                    price: 12.59,
-                    introduction: 'Idea for se reposer aprés un semaine de fulljs',
-                    nbViews: 11,
-                    isPublished: true,
-                    createdAt: new Date(),
-                    updatedAt: new Date(),
-                    publicateur:'Mac'
-                },
-                    (err, products) => {
-                        if(err) { next(err);}
-                        else {
-                            res.json(products)
-                        }
-                    }
-                
-            )
-        }
-
-    )
-    ;
+    .post(productController.add);
 
 module.exports = router;
